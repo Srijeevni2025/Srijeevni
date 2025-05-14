@@ -14,12 +14,8 @@ const testSchema = new mongoose.Schema({
     category:{
         type:String //'Full body checkup', 'Thyroid'
     },
-    price:{
-        type:Number,
-        required:[true, "There should be a price."]
-    },
-    discountedPrice:{
-        type:Number
+    specialInstruction: {
+        type:String
     }
 })
 

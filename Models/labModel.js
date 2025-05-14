@@ -16,10 +16,23 @@ const labSchema = new mongoose.Schema({
         type:String
     },
     testsOffered:[
-        {
-            type: mongoose.Schema.ObjectId,
-            ref:'Test'
-        }
+        
+            {
+               test:{ type: mongoose.Schema.ObjectId,
+                ref:'Test'
+               },
+               tat:{
+                type:Number
+               },
+               price:{
+               type:Number,
+               
+               },
+               discountedPrice:{
+               type:Number
+               }
+            }
+        
     ]
 })
 

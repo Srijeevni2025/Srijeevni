@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const  errorHandler  = require('./Controllers/errorControllers');
-dotenv.config({path:'./config.env'})
+dotenv.config({path:'./.env'})
 const app = express();
 
 
@@ -9,9 +9,9 @@ const app = express();
 
 //importing all the routers
 const userRouter = require('./Routers/userRouter');
-const testRouter = require('./Routers/testRouter')
-
-
+const testRouter = require('./Routers/testRouter');
+const labRouter = require("./Routers/labRouter");
+const bookingRouter = require("./Routers/bookingRouter")
 
 // ------middlewares--------
 
@@ -23,7 +23,9 @@ app.use(express.json());
 
 // -------------------mounting all the routers------------
 app.use("/api/v1/users", userRouter);
-app.use("/api/v1/tests", testRouter)
+app.use("/api/v1/tests", testRouter);
+app.use('/api/v1/labs', labRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 
 app.use((req, res, next)=>{
