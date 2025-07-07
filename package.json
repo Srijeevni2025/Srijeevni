@@ -13,8 +13,10 @@
   "dependencies": {
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.14.1",
-    "ndb": "^1.1.5"
+    "ndb": "^1.1.5",
+    "nodemailer": "^7.0.3"
   }
 }

@@ -36,7 +36,7 @@ exports.createBooking = catchAsync(async(req, res, next)=>{
 })
 
 exports.getAllBookings = catchAsync(async(req, res, next)=>{
-    const bookings = await Booking.find().populate('labId').populate('userId ');
+    const bookings = await Booking.find().populate('userId').populate('labId');
 
     res.status(200).json({
         "status":"success",

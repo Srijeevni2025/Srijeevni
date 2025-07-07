@@ -1,11 +1,23 @@
 const { catchAsync } = require("../utils/catchAsync");
 const Lab = require("./../Models/labModel");
 const appError = require("./../utils/appError")
+const sendEmail = require("./../utils/email");
+const fs = require("fs")
+let labOnboardEmailTemplate = fs.readFileSync("./public/emailTemplate.html");
+
 
 // 
 exports.createLab = catchAsync(async(req, res, next)=>{
     const {name, contactEmail, contactPhone, address, testsOffered } = req.body;
     const lab = await Lab.create({name, contactEmail, contactPhone, address, testsOffered});
+    const labOnboardedMailHtml = labOnboardEmailTemplate.toString().replace('{{##labName}}', name);
+    const emailDetails = {
+        to:contactEmail,
+        subject:"Successful onboarding",
+        text:lab.toJSON().toString(),
+        html:labOnboardedMailHtml
+    }
+    sendEmail(emailDetails)
     res.status(200).json({
         status:"success",
         data:lab
