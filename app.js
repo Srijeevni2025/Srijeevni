@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require("cors");
 const  errorHandler  = require('./Controllers/errorControllers');
 dotenv.config({path:'./.env'})
 const app = express();
@@ -17,6 +18,7 @@ const bookingRouter = require("./Routers/bookingRouter")
 
 // Middleware to parse the request payload
 app.use(express.json());
+app.use(cors());
 
 
 

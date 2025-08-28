@@ -15,6 +15,10 @@ const labSchema = new mongoose.Schema({
     address:{
         type:String
     },
+    aboutLab:{
+        type: String
+    },
+    services:[String],
     testsOffered:[
         
             {
@@ -36,5 +40,11 @@ const labSchema = new mongoose.Schema({
     ]
 })
 
+labSchema.pre('save',function(){
+    console.log(this);
+    return this;
+})
+
 const Lab = mongoose.model("Lab", labSchema);
+
 module.exports = Lab;

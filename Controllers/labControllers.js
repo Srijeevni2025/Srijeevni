@@ -8,8 +8,8 @@ let labOnboardEmailTemplate = fs.readFileSync("./public/emailTemplate.html");
 
 // 
 exports.createLab = catchAsync(async(req, res, next)=>{
-    const {name, contactEmail, contactPhone, address, testsOffered } = req.body;
-    const lab = await Lab.create({name, contactEmail, contactPhone, address, testsOffered});
+    const {name, contactEmail, contactPhone, address, testsOffered, services, aboutLab } = req.body;
+    const lab = await Lab.create({name, contactEmail, contactPhone, address, services, aboutLab, testsOffered});
     const labOnboardedMailHtml = labOnboardEmailTemplate.toString().replace('{{##labName}}', name);
     const emailDetails = {
         to:contactEmail,
@@ -56,5 +56,18 @@ exports.addTestToLab = catchAsync(async(req, res, next)=>{
             lab
         }
     })
+
+    })
+
+
+    exports.getLabByName  = catchAsync(async(req, res, next)=>{
+        const {name} = req.params;
+        console.log(name);
+        const lab = await Lab.findOne({name: name})
+        console.log(lab);
+        res.status(200).json({
+            status:"success",
+            data: lab
+        })
 
     })
